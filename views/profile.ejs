@@ -16,39 +16,30 @@
     <div class="container">
         <h1>Profile Page </h1>
 
-        <p>
-            <%= user.name %>
-        </p>
-        <p>
-            <%= user.email %>
-        </p>
+        
 
 
-        <!-- <form action="logout" method="get">
-                <input type="submit" value="Logout" class="btn">
-            </form> -->
-
+        <% if(user.id == profile_user.id){ %>
+        
             <div>
-                <ul >
-                    <% if(locals.user) {%>
-                    <li>
-                        <%= user.name %>
-                    </li> 
-                    <li>
-                        <a href="/users/sign-out">Sign out</a>
-                    </li>
-
-                    <% }else{ %>
-                        <li>
-                            <a href="/users/sign-in">Sign in</a>
-                        </li>
-                        <li>
-                            <a href="/users/sign-up">Sign up</a>
-                        </li>
-
-                    <% } %>
-                </ul>
+                <form action="/users/update/<%= profile_user.id %>" method="post">
+                    <input type="text" name="name" id="" placeholder="Your Name" value="<%= profile_user.name %>" required>
+                    <input type="email" name="email" id="" placeholder="Your Email" value="<%= profile_user.email %>" required>
+                    <input type="submit" value="Update">
+                </form>
             </div>
+             
+
+        <%}else{%>
+            <p>
+                <%= profile_user.name %>
+            </p>
+            <p>
+                <%= profile_user.email %>
+            </p>
+        <% } %>
+
+           
 
     </div>
 </body>
